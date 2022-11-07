@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.gft.courseNelio.entities.User;
 import com.gft.courseNelio.repositories.UserRepository;
+import com.gft.courseNelio.services.exceptions.ResourceNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -24,7 +25,7 @@ public class UserService {
 		
 		Optional<User> obj = repository.findById(id);
 		
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public User insert(User obj) {
