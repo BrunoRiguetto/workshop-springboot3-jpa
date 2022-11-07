@@ -9,10 +9,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.gft.courseNelio.entities.Category;
 import com.gft.courseNelio.entities.Order;
+import com.gft.courseNelio.entities.OrderItem;
 import com.gft.courseNelio.entities.Product;
 import com.gft.courseNelio.entities.User;
 import com.gft.courseNelio.entities.enums.OrderStatus;
 import com.gft.courseNelio.repositories.CategoryRepository;
+import com.gft.courseNelio.repositories.OrderItemRepository;
 import com.gft.courseNelio.repositories.OrderRepository;
 import com.gft.courseNelio.repositories.ProductRepository;
 import com.gft.courseNelio.repositories.UserRepository;
@@ -31,6 +33,8 @@ public class TestConfig implements CommandLineRunner{
 	private CategoryRepository categoryRepository;
 	
 	private ProductRepository productRepository;
+	
+	private OrderItemRepository orderItemRepository;
 		
 	@Override
 	public void run(String... args) throws Exception {
@@ -70,6 +74,13 @@ public class TestConfig implements CommandLineRunner{
 		
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+		
+		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
 
 	}
 	
