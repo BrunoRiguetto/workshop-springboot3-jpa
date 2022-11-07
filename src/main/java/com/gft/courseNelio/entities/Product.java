@@ -15,25 +15,32 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Table (name = "tb_category")
-public class Category implements Serializable{
+@Table (name = "tb_product")
+public class Product implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	private String description;
+	private Double price;
+	private String imgUrl;
 	
 	@Transient
-	private Set<Product> products = new HashSet<>();
+	private Set<Category> categories = new HashSet<>();
 
-	public Category(Long id, String nome) {
+	public Product(Long id, String nome, String description, Double price, String imgUrl) {
 		this.id = id;
 		this.nome = nome;
+		this.description = description;
+		this.price = price;
+		this.imgUrl = imgUrl;
 	}
 
+	
 	
 }
